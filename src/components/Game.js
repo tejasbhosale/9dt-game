@@ -19,14 +19,14 @@ const Game = ({ value, onClick }) => {
 
     useEffect(() => {
         for (let i = 0; i < gridSize; i++) {
-            squares.push(Array(gridSize).fill(null));
+            squares.push(Array(gridSize).fill(null)); //generate board dynamically based on grid size given
         }
         setCurrentState([...squares]);
         setMoves([...movesTemp]);
     }, []);
 
     useEffect(() => {
-        if (moves && !xIsNext && !winner) {
+        if (moves && !xIsNext && !winner) { //call service for a move based on state change of player
             axios.get(baseURL + `[` + moves + `]`)
                 .then(res => {
                     if (res.data) {
@@ -37,24 +37,21 @@ const Game = ({ value, onClick }) => {
                     }
                 })
                 .catch((message) => {
-                    setInformationalMessage(`! Request failed, please restart`);
-                    console.log(message);
+                    setInformationalMessage(`! Request failed, please restart`); //in case of failed api response
+                    console.log(message); //logging response
                 });
             setInformationalMessage("");
         }
     }, [xO]);
-    const chooseTeam = () => {
+
+    const chooseTeam = () => { //Pop up for choosing who wants to go first
         if (window.confirm("Do you want computer to go first?")) {
-            setXisNext(false);
+            setXisNext(false); //changing state which triggers call for 1st move from service
         }
         setNewGame(false);
     }
 
-    const restart = () => {
-        window.location.reload();
-    }
-
-    const handleClick = (i) => {
+    const handleClick = (i) => { //handle click event for row and generate updated object
         squares = [...currentState];
         setNewGame(false);
 
@@ -67,7 +64,7 @@ const Game = ({ value, onClick }) => {
             movesTemp = [...moves];
             movesTemp.push(i);
             setMoves([...movesTemp]);
-            while (squares[i][lastIndex] && lastIndex > 0) {
+            while (squares[i][lastIndex] && lastIndex > 0) { //pushing element to first available spot from bottom
                 lastIndex--;
             }
             squares[i][lastIndex] = xO;
@@ -84,7 +81,7 @@ const Game = ({ value, onClick }) => {
         }
     };
 
-    const calculateWinner = () => {
+    const calculateWinner = () => { //scanner to check winner
         for (let current of currentState) { //vertical scan
             if (current.every((val, i, arr) => val ? val === arr[0] : false)) {
                 return true;
@@ -109,6 +106,10 @@ const Game = ({ value, onClick }) => {
             }
         }
         return false;
+    }
+
+    const restart = () => {
+        window.location.reload();
     }
 
     return (
