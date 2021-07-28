@@ -1,0 +1,36 @@
+.circle {
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    border-radius: 50%;
+    border: 1px;
+}
+.circle.X{
+    background-color: #cc6666;
+    
+}
+.circle.O{
+    background-color: #6495ed;
+}
+.btn{
+    margin: 20px !important;
+}
+.box{
+    border: 5px solid white;
+    padding: 10px 30px 30px 30px;
+    margin-bottom: 20px;;
+}
+.board{
+    display: flex;
+    align-items: flex-end;
+    min-height: 200px;
+}
+.sub-board{
+    align-self: stretch;
+    width: 90px;;
+}
+.message{
+    font-weight: bold;
+    font-size: 18px;
+    height: 20px;
+}
