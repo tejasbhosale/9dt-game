@@ -87,14 +87,14 @@ const Game = ({ value, onClick }) => {
                 return true;
             }
         }
-        for (let i = 0; i < currentState.length; i++) { //horizontal scan
+        for (let i = 0; i < currentState.length; i++) {
             let rowScan = [];
             let diagonalScan1 = [];
             let diagonalScan2 = [];
             let arrLength = currentState.length;
 
             for (let j = 0; j < currentState.length; j++) {
-                rowScan.push(currentState[j][i]);
+                rowScan.push(currentState[j][i]); //horizontal scan
                 diagonalScan1.push(currentState[j][j]); //diagonal scan
                 diagonalScan2.push(currentState[j][arrLength - 1]); //diagonal scan
                 arrLength--;
