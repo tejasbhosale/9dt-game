@@ -114,13 +114,13 @@ const Game = ({ value, onClick }) => {
 
     return (
         <div>
-            <div className="box">
+            <div className="box" data-testid="game">
                 <p className="message">{informationalMessage}</p>
-                <Grid key={squares} squares={currentState} onClick={handleClick} />
+                <Grid data-testid="grid" key={squares} squares={currentState} onClick={handleClick} />
             </div>
             <div clss="btn">
-                <Button variant="contained" color="secondary" size="medium" onClick={chooseTeam} className="btn" role="button" disabled={!newGame}>Choose Team</Button>
-                <Button variant="contained" color="secondary" size="medium" onClick={restart} className="btn">Restart Game</Button>
+                <Button variant="contained" color="secondary" size="medium" onClick={chooseTeam} className="btn" role="button" disabled={!newGame} data-testid="choose-team-btn">Choose Team</Button>
+                <Button variant="contained" color="secondary" size="medium" onClick={restart} className="btn" role="button" data-testid="restart-btn">Restart Game</Button>
             </div>
         </div>
     );

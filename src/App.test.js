@@ -1,15 +1,24 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 import * as axios from "axios";
+import Game from "./components/Game";
 import App from './App';
 
 jest.mock("axios");
 
-// test('choose team', () => {
-//   const button = screen.getByRole('button');
-//   fireEvent.click(button);
-//   expect(screen.getByText('Do you want computer to go first?'));
-// });
+test("Game component renders", () => {
+  render(<Game></Game>);
+  const gameElement = screen.getByTestId('game');
+  expect(gameElement).toBeInTheDocument();
+});
 
-test(" axios good response", () => {
-  axios.get.mockImplementation(() => Promise.resolve({ data: [0,1] }));
+test("Buttons render- Choose Team", () => {
+  render(<Game></Game>);
+  const btn = screen.getByTestId('choose-team-btn');
+  expect(btn).toHaveTextContent('Choose Team');
+});
+
+test("Buttons render- Restart Game", () => {
+  render(<Game></Game>);
+  const btn = screen.getByTestId('restart-btn');
+  expect(btn).toHaveTextContent('Restart Game');
 });
